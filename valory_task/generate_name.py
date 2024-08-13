@@ -15,7 +15,7 @@ class UniqueNames:
     def generate(cls) -> str:
         while cls._names.get(name := "".join(
             "".join((
-                *random.choices(cls.consonants, k=random.randint(2, 2)),   # noqa: S311
+                *random.choices(cls.consonants, k=random.randint(1, 2)),   # noqa: S311
                 random.choice(cls.vowels),   # noqa: S311
             )) for _ in range(random.randint(2, 4))   # noqa: S311
         )):
