@@ -56,7 +56,7 @@ class Agent(Protocol[Message]):
 
     async def do_emit(self) -> None:
         if not self.emit_to:
-            warn("[agent %s] no consumer registered for the agent! Can't emit.")
+            warn("[agent %s] no consumer registered for the agent! Can't emit.", self.idx)
             return
         try:
             message: Message = await self.emit_message()
