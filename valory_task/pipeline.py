@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol, TypeVar
 
 from .generate_name import UniqueNames
 from .logger import info
@@ -10,12 +10,19 @@ if TYPE_CHECKING:
     from .agent import Agent
 
 
-class Pipeline:
+Message_co = TypeVar("Message_co", covariant=True)
 
-    agents: list[Agent]
+
+class PipelineProtocol(Protocol[Message_co]):
+    pass
+
+
+class Pipeline(PipelineProtocol[Message_co]):
+
+    agents: list[Agent[Message_co]]
     idx: str
 
-    def __init__(self, agents: list[Agent]) -> None:
+    def __init__(self, agents: list[Agent[Message_co]]) -> None:
         self.agents = agents
         self.idx = UniqueNames.generate()
         for agent_idx in range(len(agents)):
