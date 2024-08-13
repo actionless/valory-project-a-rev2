@@ -1,3 +1,4 @@
+SHELL := bash
 PYTHON := python3
 RUFF := ruff
 
