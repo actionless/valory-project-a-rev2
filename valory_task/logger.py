@@ -9,26 +9,15 @@ BOLD_RESET: Final = "\033[0m"
 COLOR_RESET: Final = "\033[0;0m"
 
 
-class Colors:
-    black = 0
-    red = 1
-    green = 2
-    yellow = 3
-    blue = 4
-    purple = 5
-    cyan = 6
-    white = 7
-
-
 class ColorsHighlight:
     black = 8
     red = 9
-    green = 10
+    # green = 10
     yellow = 11
-    blue = 12
-    purple = 13
+    # blue = 12
+    # purple = 13
     cyan = 14
-    white = 15
+    # white = 15
 
 
 def color_start(
