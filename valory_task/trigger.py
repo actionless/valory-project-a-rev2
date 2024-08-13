@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 from abc import ABC, abstractmethod
-from typing import Awaitable, Callable, Generator
+from typing import Awaitable, Callable
 
 from .logger import info
 
@@ -11,7 +11,7 @@ class Trigger(ABC):
     agent_idx: str | None = None
 
     @abstractmethod
-    async def run(self, callback: Callable[[], Awaitable[None]]) -> Generator[None, None, None]:
+    async def run(self, callback: Callable[[], Awaitable[None]]) -> None:
         pass
 
     def register_agent(self, agent_idx: str) -> None:
@@ -24,7 +24,7 @@ class TimeIntervalTrigger(Trigger):
     def __init__(self, interval_s: float) -> None:
         self.interval_s = interval_s
 
-    async def run(self, callback: Callable[[], Awaitable[None]]) -> Generator[None, None, None]:
+    async def run(self, callback: Callable[[], Awaitable[None]]) -> None:
         while True:
             info("[agent %s] timer tick", self.agent_idx)
             await callback()
