@@ -6,9 +6,13 @@ APP_DIR := $(shell readlink -e "$(script_dir)")
 TARGET_MODULE := valory_task
 TARGETS := valory_task
 
-.PHONY: all lint lint_fix compile_all python_import non_final_globals unreasonable_globals ruff flake8 pylint mypy vulture shellcheck shellcheck_makefile validate_pyproject
+.PHONY: all test lint lint_fix compile_all python_import non_final_globals unreasonable_globals ruff flake8 pylint mypy vulture shellcheck shellcheck_makefile validate_pyproject
 
-all: lint
+all: lint test
+
+
+test:
+	$(PYTHON) -m unittest -v
 
 
 lint_fix:

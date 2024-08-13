@@ -7,6 +7,12 @@
 $ python -m valory_task
 ```
 
+## Running the testsuite
+
+```console
+$ make test
+```
+
 
 ## Linting
 
