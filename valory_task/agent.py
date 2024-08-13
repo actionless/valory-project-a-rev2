@@ -1,19 +1,19 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol, TypeVar
 
 from .logger import debug, error, info, warn
 
 if TYPE_CHECKING:
     from .trigger import Trigger
 
-Message = str
+Message = TypeVar("Message")
 
 
-class Agent:
+class Agent(Protocol[Message]):
 
     trigger: Trigger | None
-    emit_to: Agent | None = None
+    emit_to: Agent[Message] | None = None
     idx: str | None = None
 
     def __init__(self, trigger: Trigger | None = None) -> None:
@@ -35,7 +35,7 @@ class Agent:
             f" with trigger {self.trigger}" if self.trigger else "",
         )
 
-    def register_output(self, agent: Agent) -> None:
+    def register_output(self, agent: Agent[Message]) -> None:
         self.emit_to = agent
         info("[agent %s] registered output to %s", self.idx, agent.idx)
 

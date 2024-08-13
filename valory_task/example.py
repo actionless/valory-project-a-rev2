@@ -1,10 +1,12 @@
-from .agent import Agent, Message
+from .agent import Agent
 from .logger import AsyncPrint
 from .pipeline import Pipeline
 from .trigger import TimeIntervalTrigger
 
+Message = str
 
-class AgentInstance(Agent):
+
+class AgentInstance(Agent[Message]):
 
     MSG = "foobar"
 
