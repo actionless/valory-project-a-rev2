@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import asyncio
 from abc import ABC, abstractmethod
-from typing import Awaitable, Callable
+from typing import TYPE_CHECKING
 
 from .logger import info
+
+if TYPE_CHECKING:
+    from collections.abc import Awaitable, Callable
 
 
 class Trigger(ABC):
