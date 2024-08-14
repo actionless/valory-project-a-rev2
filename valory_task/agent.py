@@ -62,5 +62,6 @@ class Agent(Protocol[Message]):
             message: Message = await self.emit_message()
         except Exception as exc:
             await self.error_handler(exc, "while emitting a message")
-        info("[agent %s] emitting to %s message `%s`...", self.idx, self.emit_to.idx, message)
-        await self.emit_to.do_consume(message)
+        else:
+            info("[agent %s] emitting to %s message `%s`...", self.idx, self.emit_to.idx, message)
+            await self.emit_to.do_consume(message)
